@@ -1,12 +1,11 @@
 openapi: 3.0.0
 info:
-  title: SBC Auth API Reference
-  description: BC Registries Auth API reference documentation
+  title: BC Registries Accounts API
+  description: |-
+    <p>BC Registries Accounts system is used to manage the BC Registries accounts. The system manages the authorizations related data and does integration with keycloak. </p>
   version: 1.0.1
   contact:
-    name: Auth API Support
-#    url: BC Registries
-#    email: BC Registries
+    name: BC Registries
   license:
     name: Apache 2.0
 paths:
@@ -850,72 +849,70 @@ paths:
         required: true
         schema:
           type: string
-#    post:
-#      responses:
-#        '201':
-#          description: Success
-#          headers:
-#            X-Application-Context:
-#              schema:
-#                type: string
-#              description: X-Application-Context
-#            Access-Control-Allow-Origin:
-#              schema:
-#                type: string
-#              description: Access-Control-Allow-Origin
-#            Access-Control-Allow-Methods:
-#              schema:
-#                type: string
-#              description: Access-Control-Allow-Methods
-#            Access-Control-Allow-Headers:
-#              schema:
-#                type: string
-#              description: Access-Control-Allow-Headers
-#          content:
-#            application/json:
-#              schema:
-#                $ref: '#/components/schemas/affiliation'
-#        '400':
-#          description: Bad Request
-#          content:
-#            application/json:
-#              schema:
-#                type: object
-#                properties:
-#                  code:
-#                    type: string
-#                    description: Identifier representing the type of error that occurred.
-#                  message:
-#                    type: string
-#                    description: Description of the error.
-#                description: Contains details of an error that was encountered.
-#      operationId: post_org_affiliations
-#      tags:
-#        - orgs
-#      summary: Post a new Affiliation for an org using the request body.
-#      description: Post a new Affiliation for an org using the request body.
-#      requestBody:
-#        content:
-#          application/json:
-#            schema:
-#              title: affiliationRequest
-#              properties:
-#                businessIdentifier:
-#                  type: string
-#                  title: Business Identifier
-#                  default: ''
-#                  example:
-#                    - CP1234567
-#                  pattern: ^(.*)$
-#                passCode:
-#                  type: string
-#                  title: Passcode
-#                  default: ''
-#                  example:
-#                    - '12345'
-#                  pattern: ^(.*)$
-#              required:
-#                - businessIdentifier
+    post:
+      responses:
+        '201':
+          description: Success
+          headers:
+            X-Application-Context:
+              schema:
+                type: string
+              description: X-Application-Context
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              description: Access-Control-Allow-Origin
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+              description: Access-Control-Allow-Methods
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+              description: Access-Control-Allow-Headers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/affiliation'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: Identifier representing the type of error that occurred.
+                  message:
+                    type: string
+                    description: Description of the error.
+                description: Contains details of an error that was encountered.
+      operationId: post_org_affiliations
+      tags:
+        - orgs
+      summary: Post a new Affiliation for an org using the request body.
+      description: Post a new Affiliation for an org using the request body.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: affiliationRequest
+              properties:
+                businessIdentifier:
+                  type: string
+                  title: Business Identifier
+                  default: ''
+                  example: 'CP1234567'
+                  pattern: ^(.*)$
+                passCode:
+                  type: string
+                  title: Passcode
+                  default: ''
+                  example: '12345'
+                  pattern: ^(.*)$
+              required:
+                - businessIdentifier
     get:
       responses:
         '200':
@@ -1024,17 +1021,12 @@ paths:
                 name:
                   type: string
                   title: Organization Name
-                  default: ''
-                  example:
-                    - Foobar Inc.
+                  example: 'Foobar Inc.'
                   pattern: '^[^\s]+(\s+[^\s]+)*$'
                 typeCode:
                   type: string
                   title: Organizational Type
-                  default: IMPLICIT
-                  example:
-                    - IMPLICIT
-                    - EXPLICIT
+                  example: IMPLICIT
                   pattern: ^(.*)$
               required:
                 - name
@@ -1151,17 +1143,10 @@ paths:
                 name:
                   type: string
                   title: Organization Name
-                  default: ''
-                  example:
-                    - Foobar Inc.
                   pattern: '^[^\s]+(\s+[^\s]+)*$'
                 typeCode:
                   type: string
                   title: Organizational Type
-                  default: IMPLICIT
-                  example:
-                    - IMPLICIT
-                    - EXPLICIT
                   pattern: ^(.*)$
               required:
                 - name
@@ -1313,38 +1298,12 @@ paths:
         in: query
         required: true
         description: Corp Num/Incorporation Number of the entity
-        examples:
-          example1:
-            value: CP0001234
-          CP0002000:
-            value: CP0002000
-  /logout:
-    post:
-      responses:
-        '200':
-          description: Success
-          headers:
-            X-Application-Context:
-              schema:
-                type: string
-              description: X-Application-Context
-            Access-Control-Allow-Origin:
-              schema:
-                type: string
-              description: Access-Control-Allow-Origin
-            Access-Control-Allow-Methods:
-              schema:
-                type: string
-              description: Access-Control-Allow-Methods
-            Access-Control-Allow-Headers:
-              schema:
-                type: string
-              description: Access-Control-Allow-Headers
-      operationId: post_logout
-      tags:
-        - logout
-      summary: Logout user from keycloak by refresh token.
-      description: Logout user from keycloak by refresh token.
+      examples:
+        example1:
+          value: CP0001234
+        CP0002000:
+          value: CP0002000
+  
   '/invitations/{invitation_id}':
     parameters:
       - name: invitation_id
@@ -3581,22 +3540,23 @@ paths:
                   - modifiedBy
                   - name
                   - passCodeClaimed
-#                examples:
-#                  CP0001578:
-#                    businessIdentifier: CP0001578
-#                    businessNumber: CP0001847
-#                    contacts:
-#                      - created: '2020-01-09T11:11:41.353569+00:00'
-#                        email: saravanpa@gmail.com
-#                        modified: '2020-01-09T11:11:41.353578+00:00'
-#                        phone: '1111'
-#                        phoneExtension: '11111'
-#                    corpType: CP
-#                    created: '2020-01-09T11:11:31.303521+00:00'
-#                    modified: '2020-01-09T11:14:06.560862+00:00'
-#                    modifiedBy: sbc-auth admin
-#                    name: Business
-#                    passCodeClaimed: false
+              examples:
+                CP0001578:
+                  value:
+                    businessIdentifier: CP0001578
+                    businessNumber: CP0001847
+                    contacts:
+                      - created: '2020-01-09T11:11:41.353569+00:00'
+                        email: saravanpa@gmail.com
+                        modified: '2020-01-09T11:11:41.353578+00:00'
+                        phone: '1111'
+                        phoneExtension: '11111'
+                    corpType: CP
+                    created: '2020-01-09T11:11:31.303521+00:00'
+                    modified: '2020-01-09T11:14:06.560862+00:00'
+                    modifiedBy: sbc-auth admin
+                    name: Business
+                    passCodeClaimed: false
         '404':
           description: Not Found
           content:
@@ -5302,3 +5262,9 @@ components:
             minLength: 1
         required:
           - type
+  securitySchemes:
+    JWT:
+      type: http
+      scheme: bearer
+security:
+  - JWT: []

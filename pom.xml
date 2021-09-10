@@ -39,7 +39,7 @@
 
 							<generatorName>java</generatorName>
 
-							<skipValidateSpec>false</skipValidateSpec>
+							<validateSpec>false</validateSpec>
 
 							<configOptions>
 								<dateLibrary>joda</dateLibrary>
