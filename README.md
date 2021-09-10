@@ -7,4 +7,7 @@ This client is used by CSO (BC Registries Integration)
 mvn clean install package
 ```
 
+## Spec location
+https://raw.githubusercontent.com/bcgov/sbc-auth/main/docs/docs/api_contract/auth-api-1.0.0.yaml
+
     
