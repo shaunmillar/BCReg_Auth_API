@@ -17,4 +17,7 @@ mvn clean install package
 ## Spec location - Use this when updates occur. 
 https://raw.githubusercontent.com/bcgov/sbc-auth/main/docs/docs/api_contract/auth-api-1.0.0.yaml
 
+## Current Repo location
+https://github.com/shaunmillar/BCReg_auth_client
+
     
